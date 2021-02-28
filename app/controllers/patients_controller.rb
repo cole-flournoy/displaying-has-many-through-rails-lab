@@ -1,0 +1,25 @@
+class PatientsController < ApplicationController
+  def show
+    @patient = Patient.find(params[:id])
+  end
+
+  def index
+    @patients = Patient.all
+  end
+
+  def new
+    @patient = Patient.new
+    # @patient.ingredients.build(name: nil)
+    # @patient.ingredients.build(name: nil)
+  end
+
+  def create
+    patient = Patient.create(recipe_params)
+  end
+
+  private
+
+  def recipe_params
+    params.require(:patient).permit()
+  end
+end
